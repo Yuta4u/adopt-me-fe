@@ -1,38 +1,59 @@
 // styling
-import Image from "./assets/img/adopt-me-banner.png"
-import Logo from "./assets/img/adopt-me-logo.png"
-import Logos from "./assets/img/logos.png"
-import "./assets/login.css"
+import Image from "./assets/img/adopt-me-banner.png";
+import Logo from "./assets/img/adopt-me-logo.png";
+import Logos from "./assets/img/logos.png";
+import "./assets/login.css";
+import Swal from "sweetalert2";
 
+// CommonJS
 // react
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 // others / assets
-import { getAllUser } from "../../crud/api/user"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { getAllUser } from "../../crud/api/user";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchLogin } from "../../Redux/user";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const nav = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const nav = useNavigate();
 
   // ========== HANDLE LOGIN ==========
   const handleLogin = async () => {
-    try {
-      const { data } = await axios.post("http://localhost:8000/user/v1/login", {
-        email,
-        password,
-      })
-      if (data.statusLogin === "Berhasil") {
-        localStorage.setItem("token", data.token)
-        nav("/home")
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
+    // try {
+    //   const { data } = await axios.post("http://localhost:8000/user/v1/login", {
+    //     email,
+    //     password,
+    //   })
+    //   if (data.statusLogin === "Berhasil") {
+    //     localStorage.setItem("token", data.token)
+    //     nav("/home")
+    //   }
+    // } catch (err) {
+    //   console.log(err)
+    // }
+
+    const data = {
+      email: email,
+      password: password,
+    };
+    dispatch(fetchLogin(data)).then((res) => {
+      Swal.fire({
+        position: "middle-center",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((res) => {
+        navigate("/");
+      });
+    });
+  };
 
   return (
     <div className="container-login-fluid min-vh-100">
@@ -81,7 +102,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -1,27 +1,22 @@
 // STYLING
-import axios from "axios"
-import "./assets/detail.css"
+import axios from "axios";
+import "./assets/detail.css";
 
 // react
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAllAnimalById } from "../../Redux/animal";
 
-const Detail = () => {
-  const [data, setData] = useState([])
-
-  const getAnimalById = async () => {
-    try {
-      const { data } = await axios.get(
-        "http://localhost:8000/animal/v1/animalById/7"
-      )
-      setData(data.data[0])
-    } catch (err) {
-      console.log(err)
-    }
-  }
+const Detail = (props) => {
+  const [data, setData] = useState([]);
+  const idanimal = new URLSearchParams(window.location.search).get("id");
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getAnimalById()
-  }, [])
+    dispatch(fetchAllAnimalById(idanimal)).then((res) => {
+      setData(res.payload.data[0]);
+    });
+  }, [idanimal]);
 
   // CONVERT RUPIAH
   const convertRupiah = (num) => {
@@ -34,17 +29,17 @@ const Detail = () => {
       .join(".")
       .split("")
       .reverse()
-      .join("")
-  }
+      .join("");
+  };
   return (
     <div className="detail-container  min-vh-100">
       <div className="row detail mx-auto">
         <div className="col-3 detail-image">
+          <img
+            src={`http://localhost:8000/${data?.images?.replace(`\\`, "/")}`}
+            className="detail-img"
+          />
           {/* {data ? (
-            <img
-              src={`http://localhost:8000/${data.images.replace("\\", "/")}`}
-              className="detail-img"
-            />
           ) : (
             ""
           )} */}
@@ -77,7 +72,7 @@ const Detail = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;
