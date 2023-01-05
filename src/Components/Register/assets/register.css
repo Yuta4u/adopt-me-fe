@@ -1,0 +1,39 @@
+.container-register-fluid {
+  display: flex;
+  /* background-color: #b6e2d3; */
+  background-image: url("./img//register-bg-img2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.register {
+  width: 30%;
+  height: 80vh;
+  background-color: rgba(66, 66, 66, 0.404);
+  border-radius: 50px;
+}
+
+/* HALO TAMA CUT TAMA KANCUT */
+.logo-register {
+  width: 60%;
+  margin: auto;
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: center;
+  margin-bottom: -10%;
+  margin-top: 8%;
+}
+
+.logos-register {
+  width: 100%;
+}
+
+.form-register {
+  /* background-color: antiquewhite; */
+  padding: 0 10% 10% 10%;
+}
+
+.nav-login {
+  margin-top: 5px;
+  margin-left: 5px;
+}

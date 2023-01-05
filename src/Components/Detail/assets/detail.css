@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;500&display=swap");
+
+.detail-container {
+  background-color: #222;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.detail {
+  width: 70%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #ff00c8; */
+}
+
+.detail-image {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  /* background-color: #00ffd5; */
+}
+
+.detail-img {
+  width: 100%;
+  height: 70vh;
+}
+
+.card-deskripsi {
+  width: 100%;
+  height: 50vh;
+  margin-top: 20px;
+}
+
+.div-name {
+  /* background-color: #7a00ff; */
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  font-family: "Catamaran", sans-serif;
+  font-weight: 500;
+  justify-content: center;
+  color: #757575;
+  /* justify-content: space-between; */
+}
+
+.div-jenis,
+.div-deskripsi,
+.div-adopt {
+  display: flex;
+  flex-direction: row;
+}
+
+.info {
+  margin-top: -30%;
+  margin-bottom: 10%;
+  font-style: italic;
+}
+
+.div-jenis {
+  margin-top: 50px;
+}
+
+.button-adopt {
+  width: 300px;
+  margin: auto;
+}
+
+.jenis,
+.jenis-data,
+.adopt,
+.adopt-data,
+.deskripsi,
+.deskripsi-data {
+  color: #757575;
+  width: 50%;
+  height: 8vh;
+  font-size: 15px;
+}
+
+/* CSS */
+.detail-deskripsi,
+.detail-image,
+.button-adopt {
+  padding: 0.6em 2em;
+  width: 40%;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.279);
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.detail-deskripsi:before,
+.detail-image:before,
+.button-adopt:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-detail-deskripsi 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-detail-deskripsi {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.detail-deskripsi:after,
+.detail-image:after,
+.button-adopt:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
