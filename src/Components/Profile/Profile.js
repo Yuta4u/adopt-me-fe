@@ -2,7 +2,25 @@
 import "./assets/profile.css"
 import defaultProfileImg from "./assets/img/avatar.png"
 
+// content-profile
+import Pet from "./assets/Pet"
+import Adopt from "./assets/Adopt"
+
+// others
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchAllAnimal } from "../../Redux/animal"
+
 const Profile = () => {
+  const [animal, setAnimal] = useState([])
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state)
+
+  useEffect(() => {
+    console.log(user, "ini users")
+  }, [])
+
   return (
     <>
       <div className="profile-container-fluid sketchy min-vh-100">
@@ -13,12 +31,21 @@ const Profile = () => {
             </div>
 
             <div className="profile-nav">
-              <div className="pet-nav">Pet</div>
-              <div className="adopt-nav">Adopt</div>
-              <div className="history-nav">History</div>
+              <div className="pet-nav" onClick={(e) => content("pet")}>
+                Pet
+              </div>
+              <div className="adopt-nav" onClick={(e) => content("adopt")}>
+                Adopt
+              </div>
+              <div className="history-nav" onClick={(e) => content("history")}>
+                History
+              </div>
             </div>
           </div>
-          <div className="col profile-content"></div>
+          <div className="col profile-content">
+            <Pet props={animal} />
+            {/* <Adopt /> */}
+          </div>
         </div>
       </div>
     </>

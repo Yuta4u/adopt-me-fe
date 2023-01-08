@@ -59,7 +59,8 @@
   font-weight: 300;
 }
 
-.form-control {
+.email-input,
+.password-input {
   border-radius: 50px;
 }
 

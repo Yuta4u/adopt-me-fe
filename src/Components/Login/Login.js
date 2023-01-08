@@ -1,47 +1,33 @@
 // styling
-import Image from "./assets/img/adopt-me-banner.png";
-import Logo from "./assets/img/adopt-me-logo.png";
-import Logos from "./assets/img/logos.png";
-import "./assets/login.css";
-import Swal from "sweetalert2";
+import Image from "./assets/img/adopt-me-banner.png"
+import Logo from "./assets/img/adopt-me-logo.png"
+import Logos from "./assets/img/logos.png"
+import "./assets/login.css"
+import Swal from "sweetalert2"
 
 // CommonJS
 // react
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 // others / assets
-import { getAllUser } from "../../crud/api/user";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchLogin } from "../../Redux/user";
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { fetchLogin } from "../../Redux/user"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const nav = useNavigate();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const nav = useNavigate()
 
   // ========== HANDLE LOGIN ==========
   const handleLogin = async () => {
-    // try {
-    //   const { data } = await axios.post("http://localhost:8000/user/v1/login", {
-    //     email,
-    //     password,
-    //   })
-    //   if (data.statusLogin === "Berhasil") {
-    //     localStorage.setItem("token", data.token)
-    //     nav("/home")
-    //   }
-    // } catch (err) {
-    //   console.log(err)
-    // }
-
     const data = {
       email: email,
       password: password,
-    };
+    }
     dispatch(fetchLogin(data)).then((res) => {
       Swal.fire({
         position: "middle-center",
@@ -50,10 +36,10 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       }).then((res) => {
-        navigate("/");
-      });
-    });
-  };
+        navigate("/home")
+      })
+    })
+  }
 
   return (
     <div className="container-login-fluid min-vh-100">
@@ -70,7 +56,7 @@ const Login = () => {
               <label className="form-label">Email address</label>
               <input
                 type={"email"}
-                className="form-control"
+                className="form-control email-input"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -78,7 +64,7 @@ const Login = () => {
               <label className="form-label">password</label>
               <input
                 type={"password"}
-                className="form-control"
+                className="form-control password-input"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -102,7 +88,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

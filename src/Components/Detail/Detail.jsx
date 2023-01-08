@@ -1,22 +1,22 @@
 // STYLING
-import axios from "axios";
-import "./assets/detail.css";
+import axios from "axios"
+import "./assets/detail.css"
 
 // react
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchAllAnimalById } from "../../Redux/animal";
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { fetchAllAnimalById } from "../../Redux/animal"
 
 const Detail = (props) => {
-  const [data, setData] = useState([]);
-  const idanimal = new URLSearchParams(window.location.search).get("id");
-  const dispatch = useDispatch();
+  const [data, setData] = useState([])
+  const idanimal = new URLSearchParams(window.location.search).get("id")
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchAllAnimalById(idanimal)).then((res) => {
-      setData(res.payload.data[0]);
-    });
-  }, [idanimal]);
+      setData(res.payload.data[0])
+    })
+  }, [idanimal])
 
   // CONVERT RUPIAH
   const convertRupiah = (num) => {
@@ -29,8 +29,8 @@ const Detail = (props) => {
       .join(".")
       .split("")
       .reverse()
-      .join("");
-  };
+      .join("")
+  }
   return (
     <div className="detail-container  min-vh-100">
       <div className="row detail mx-auto">
@@ -64,15 +64,15 @@ const Detail = (props) => {
           </div>
           <div className="info">
             Sistem adopsi hewan di adopt me adalah, calon adopter membayar 50%
-            dari dengan saldo lalu owner akan menerima / mengkonfirmasi bahwa
-            sudah ada calon adopter. Lalu owner akan memberi lokasi untuk
-            melunaskan 50% dan bertransaksi di tempat
+            dengan saldo lalu owner akan menerima / mengkonfirmasi bahwa sudah
+            ada calon adopter. Lalu owner akan memberi lokasi untuk melunaskan
+            sisanya dan bertransaksi.
           </div>
           <button className="button-adopt">ADOPT SEKARANG</button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Detail;
+export default Detail

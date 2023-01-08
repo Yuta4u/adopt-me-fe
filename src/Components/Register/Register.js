@@ -53,9 +53,10 @@ const Register = () => {
         "http://localhost:8000/user/v1/register",
         formRegister
       )
-      if (data && formRegister) {
-        registerSuccess()
-      }
+      // if (data && formRegister) {
+      //   registerSuccess()
+      // }
+      console.log(data)
     } catch (err) {
       registerFailure(err.response.data.message)
     }
