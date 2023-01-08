@@ -27,6 +27,22 @@ export const fetchLogin = createAsyncThunk("users/loginUsers", async (data) => {
   }
 });
 
+export const fetchUserId = createAsyncThunk(
+  "users/loginUsers",
+  async (data) => {
+    try {
+      const res = await api.get("/user/v1/userId/", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      return res.data;
+    } catch (err) {
+      return err;
+    }
+  }
+);
+
 const initialState = {
   register: [],
   user: [],
@@ -45,6 +61,16 @@ const usersSlice = createSlice({
       return { ...state, loading: false, login: action.payload };
     },
     [fetchLogin.rejected]: (state, action) => {
+      return { ...state, loading: false, error: action.error };
+    },
+    // =================== GET users Id============================
+    [fetchUserId.pending]: (state, action) => {
+      return { ...state, loading: true, error: null };
+    },
+    [fetchUserId.fulfilled]: (state, action) => {
+      return { ...state, loading: false, user: action.payload };
+    },
+    [fetchUserId.rejected]: (state, action) => {
       return { ...state, loading: false, error: action.error };
     },
   },

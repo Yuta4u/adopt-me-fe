@@ -7,6 +7,9 @@
   align-items: center;
 }
 
+.navbarkecil {
+  background-color: #222;
+}
 .profile {
   width: 80%;
   height: 80vh;

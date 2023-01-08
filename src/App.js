@@ -2,11 +2,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // pages
-import Register from "./Components/Register/Register";
-import Login from "./Components/Login/Login";
-import Home from "./Components/Home/Home";
-import Detail from "./Components/Detail/Detail";
-import Profile from "./Components/Profile/Profile";
+import Register from "./Pages/Register/Register";
+import Login from "./Pages/Login/Login";
+import Home from "./Pages/Home/Home";
+import Detail from "./Pages/Detail/Detail";
+import Profile from "./Pages/Profile/Profile";
 
 import "./App.css";
 // import "bootstrap/dist/css/bootstrap.min.css"
