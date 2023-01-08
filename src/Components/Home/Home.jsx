@@ -34,6 +34,12 @@ const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const ls = localStorage.getItem("token")
+
+  const handleNavbarLogin = () => {
+    ls ? navigate("/profile") : navigate("/login")
+  }
+
   useEffect(() => {
     dispatch(fetchAllAnimal()).then((res) => {
       setAnimal(res.payload.data)
@@ -48,7 +54,7 @@ const Home = () => {
         <img
           src={Logo}
           className="home-profile rounded-circle"
-          onClick={() => navigate("/profile")}
+          onClick={() => handleNavbarLogin()}
         ></img>
       </div>
 

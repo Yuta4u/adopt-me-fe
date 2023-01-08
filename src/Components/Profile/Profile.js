@@ -11,11 +11,17 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAllAnimal } from "../../Redux/animal"
+import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
   const [animal, setAnimal] = useState([])
   const dispatch = useDispatch()
   const user = useSelector((state) => state)
+  const nav = useNavigate()
+
+  const handleLogout = () => {
+    return localStorage.clear(), nav("/login"), alert("berhasil logout yey")
+  }
 
   useEffect(() => {
     console.log(user, "ini users")
@@ -39,6 +45,9 @@ const Profile = () => {
               </div>
               <div className="history-nav" onClick={(e) => content("history")}>
                 History
+              </div>
+              <div className="logout-nav" onClick={() => handleLogout()}>
+                Logout
               </div>
             </div>
           </div>
