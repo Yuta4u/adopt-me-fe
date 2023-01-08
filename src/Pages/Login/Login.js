@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <div className="container-login-fluid min-vh-100">
       <div className="row div-register mx-auto my-auto bg-white">
-        <div className="col input-login banner">
+        <div className="col input-login banner-wc">
           <img src={Image} className="banner-img " />
         </div>
         <div className="col input-login form-login">

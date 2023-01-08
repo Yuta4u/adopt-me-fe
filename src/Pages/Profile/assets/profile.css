@@ -11,8 +11,9 @@
   background-color: #222;
 }
 .profile {
-  width: 80%;
+  width: 90%;
   height: 80vh;
+  margin-top: 5%;
   /* background-color: aquamarine; */
   border: 2px solid #757575;
 }
@@ -57,7 +58,11 @@
 }
 
 .logout-nav {
-  margin-top: 30%;
+  margin-top: 25%;
+}
+
+.logout-nav:hover {
+  color: rgba(0, 0, 255, 0.156);
 }
 
 .pet-nav:hover,
@@ -80,7 +85,7 @@
   border: none;
   border-radius: 25px;
   position: relative;
-  margin-right: 75%;
+  margin-right: 82.5%;
 }
 
 .pet-card-img {
@@ -95,7 +100,7 @@
   opacity: 1;
 }
 
-.carreaux_presentation_light {
+.lel {
   display: table-cell;
   width: 200px;
   height: 200px;
@@ -103,7 +108,7 @@
   overflow: hidden;
   position: relative;
 }
-.carreaux_presentation_light .shadow_swhow_mini {
+.lel .shadow_swhow_mini {
   background-color: rgba(19, 30, 33, 0.4);
   position: absolute;
   z-index: 1000;
@@ -113,10 +118,10 @@
   bottom: 0;
 }
 
-.carreaux_presentation_light:hover .shadow_swhow_mini {
+.lel:hover .shadow_swhow_mini {
   background-color: rgba(16, 23, 41, 0);
 }
-.carreaux_presentation_light .deroul_titre {
+.lel .deroul_titre {
   position: absolute;
   text-transform: uppercase;
   font-family: "Roboto";
@@ -133,11 +138,11 @@
   -ms-transition: all 0.7s;
   transition: all 0.7s;
 }
-.carreaux_presentation_light:hover .deroul_titre {
+.lel:hover .deroul_titre {
   background-color: #1e4944;
   left: 0px;
 }
-.carreaux_presentation_light .deroul_soustitre {
+.lel .deroul_soustitre {
   position: absolute;
   font-family: "Roboto";
   padding: 5px;
@@ -154,7 +159,7 @@
   -ms-transition: all 0.7s;
   transition: all 0.7s;
 }
-.carreaux_presentation_light:hover .deroul_soustitre {
+.lel:hover .deroul_soustitre {
   background-color: #417c74;
   right: 0px;
 }

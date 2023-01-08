@@ -1,32 +1,32 @@
 //styling
-import "./assets/profile.css";
-import defaultProfileImg from "./assets/img/avatar.png";
-import Logo from "./assets/img/adopt-me-logo.png";
-import Logos from "./assets/img/logos.png";
+import "./assets/profile.css"
+import defaultProfileImg from "./assets/img/avatar.png"
+import Logo from "./assets/img/adopt-me-logo.png"
+import Logos from "./assets/img/logos.png"
 
 // content-profile
-import Pet from "./assets/Pet";
-import Adopt from "./assets/Adopt";
+import Pet from "./assets/Pet"
+import Adopt from "./assets/Adopt"
 
 // others
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllAnimal } from "../../Redux/animal";
-import { useNavigate } from "react-router-dom";
-import Headers from "../../Components/Headers";
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchAllAnimal } from "../../Redux/animal"
+import { useNavigate } from "react-router-dom"
+import Headers from "../../Components/Headers"
 
 const Profile = () => {
-  const [animal, setAnimal] = useState([]);
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state);
-  const nav = useNavigate();
+  const [animal, setAnimal] = useState([])
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state)
+  const nav = useNavigate()
 
   const handleLogout = () => {
-    return localStorage.clear(), nav("/login"), alert("berhasil logout yey");
-  };
+    return localStorage.clear(), nav("/login"), alert("berhasil logout yey")
+  }
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [])
 
   return (
     <>
@@ -41,7 +41,7 @@ const Profile = () => {
             </div>
 
             <div className="profile-nav">
-              {/* <div className="pet-nav" onClick={(e) => content("pet")}>
+              <div className="pet-nav" onClick={(e) => content("pet")}>
                 Pet
               </div>
               <div className="adopt-nav" onClick={(e) => content("adopt")}>
@@ -52,7 +52,7 @@ const Profile = () => {
               </div>
               <div className="logout-nav" onClick={() => handleLogout()}>
                 Logout
-              </div> */}
+              </div>
             </div>
           </div>
           <div className="col profile-content">
@@ -62,7 +62,7 @@ const Profile = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

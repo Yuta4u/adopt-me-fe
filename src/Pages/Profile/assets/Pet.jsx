@@ -7,11 +7,13 @@ import { useSelector } from "react-redux"
 
 const Pet = () => {
   const [dataAnimal, setDataAnimal] = useState([])
+  const user = useSelector((state) => state)
+  console.log(user)
 
   const getAnimalByUserId = () => {
     axios
       .get("http://localhost:8000/animal/v1/animalByUser/10")
-      .then((res) => setDataAnimal(res.data.data), console.log(dataAnimal))
+      .then((res) => setDataAnimal(res.data.data))
   }
 
   useEffect(() => {
@@ -25,8 +27,8 @@ const Pet = () => {
         <div className="col-md-12 mt-2">
           <div className="row gap-5">
             {dataAnimal.map((e) => (
-              <div class="carreaux_presentation_light">
-                <div class="shadow_swhow_mini">
+              <div class="carreaux_presentation_light lel">
+                <div class="shadow_swhow_mini lel">
                   <img
                     src={`http://localhost:8000/${e.images.replace(`\\`, "/")}`}
                     className="pet-card-img"

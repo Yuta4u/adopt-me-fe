@@ -1,0 +1,17 @@
+.header {
+  position: absolute;
+  width: 90%;
+  height: 50px;
+  margin: 30px;
+  margin-left: 4%;
+  z-index: 1;
+  /* background-color: aqua; */
+}
+
+.img-logo-header {
+  height: 150px;
+}
+
+.home-profile-header {
+  height: 50px;
+}
