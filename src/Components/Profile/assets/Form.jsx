@@ -3,7 +3,7 @@ const Form = () => {
     <>
       <button
         type="button"
-        class="btn btn-primary mt-3"
+        class="btn-open-adopt mt-3"
         data-bs-toggle="modal"
         data-bs-target="#popup"
       >

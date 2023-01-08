@@ -6,11 +6,13 @@ import "./assets/detail.css"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { fetchAllAnimalById } from "../../Redux/animal"
+import { useNavigate } from "react-router-dom"
 
 const Detail = (props) => {
   const [data, setData] = useState([])
   const idanimal = new URLSearchParams(window.location.search).get("id")
   const dispatch = useDispatch()
+  const nav = useNavigate()
 
   useEffect(() => {
     dispatch(fetchAllAnimalById(idanimal)).then((res) => {
@@ -68,7 +70,10 @@ const Detail = (props) => {
             ada calon adopter. Lalu owner akan memberi lokasi untuk melunaskan
             sisanya dan bertransaksi.
           </div>
-          <button className="button-adopt">ADOPT SEKARANG</button>
+          <button className="button-detail adopt-now">ADOPT SEKARANG</button>
+          <button className="button-detail back" onClick={() => nav("/home")}>
+            BACK TO HOME
+          </button>
         </div>
       </div>
     </div>

@@ -127,6 +127,7 @@ const Home = () => {
                     "/"
                   )}`}
                   alt=""
+                  className="card-image"
                   // {...(setIdAnimal = animal.id)}
                   // onClick={navigate("/home/detail")}
                   onClick={(e) => navigate(`/home/detail/?id=${animal.id}`)}

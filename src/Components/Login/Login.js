@@ -1,13 +1,12 @@
 // styling
 import Image from "./assets/img/adopt-me-banner.png"
-import Logo from "./assets/img/adopt-me-logo.png"
 import Logos from "./assets/img/logos.png"
 import "./assets/login.css"
 import Swal from "sweetalert2"
 
 // CommonJS
 // react
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 // others / assets
 import axios from "axios"
@@ -20,7 +19,6 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const nav = useNavigate()
 
   // ========== HANDLE LOGIN ==========
   const handleLogin = async () => {
@@ -29,15 +27,24 @@ const Login = () => {
       password: password,
     }
     dispatch(fetchLogin(data)).then((res) => {
-      Swal.fire({
-        position: "middle-center",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500,
-      }).then((res) => {
-        navigate("/home")
-      })
+      if (res.payload.statusLogin) {
+        Swal.fire({
+          position: "middle-center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then((res) => navigate("/home"))
+      }
+      if (res.payload.response.data.message) {
+        Swal.fire({
+          position: "middle-center",
+          icon: "error",
+          title: "Email / Password salah",
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }
     })
   }
 
@@ -79,7 +86,7 @@ const Login = () => {
               <button
                 type="button"
                 className="btn btn-register btn-light mb-3"
-                onClick={() => nav("/register")}
+                onClick={() => navigate("/register")}
               >
                 Register
               </button>

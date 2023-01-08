@@ -1,6 +1,8 @@
 //styling
 import "./assets/profile.css"
 import defaultProfileImg from "./assets/img/avatar.png"
+import Logo from "./assets/img/adopt-me-logo.png"
+import Logos from "./assets/img/logos.png"
 
 // content-profile
 import Pet from "./assets/Pet"
@@ -23,9 +25,7 @@ const Profile = () => {
     return localStorage.clear(), nav("/login"), alert("berhasil logout yey")
   }
 
-  useEffect(() => {
-    console.log(user, "ini users")
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <>

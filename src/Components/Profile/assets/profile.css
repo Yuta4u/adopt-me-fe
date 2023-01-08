@@ -70,9 +70,22 @@
   display: none;
 }
 
+.btn-open-adopt {
+  width: 150px;
+  background-color: #1e4944;
+  color: #222;
+  border: none;
+  border-radius: 25px;
+  position: relative;
+  margin-right: 75%;
+}
+
 .pet-card-img {
   opacity: 0.8;
   cursor: pointer;
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
 }
 
 .pet-card-img:hover {

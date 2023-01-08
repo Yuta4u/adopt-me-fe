@@ -62,9 +62,13 @@
   margin-top: 50px;
 }
 
-.button-adopt {
+.button-detail {
   width: 300px;
   margin: auto;
+}
+
+.back {
+  margin-left: 5%;
 }
 
 .jenis,
@@ -82,7 +86,7 @@
 /* CSS */
 .detail-deskripsi,
 .detail-image,
-.button-adopt {
+.button-detail {
   padding: 0.6em 2em;
   width: 40%;
   border: none;
@@ -99,7 +103,7 @@
 
 .detail-deskripsi:before,
 .detail-image:before,
-.button-adopt:before {
+.button-detail:before {
   content: "";
   background: linear-gradient(
     45deg,
@@ -141,7 +145,7 @@
 
 .detail-deskripsi:after,
 .detail-image:after,
-.button-adopt:after {
+.button-detail:after {
   z-index: -1;
   content: "";
   position: absolute;
