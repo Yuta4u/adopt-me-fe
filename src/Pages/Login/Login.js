@@ -23,28 +23,36 @@ const Login = () => {
   // ========== HANDLE LOGIN ==========
   const handleLogin = async () => {
     const data = {
-      email: email,
-      password: password,
+      email,
+      password,
     }
-    dispatch(fetchLogin(data)).then((res) => {
-      if (res.payload.statusLogin) {
-        Swal.fire({
-          position: "middle-center",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        }).then((res) => navigate("/home"))
-      } else if (res.payload.response.data.message) {
-        Swal.fire({
+    email.includes("@")
+      ? dispatch(fetchLogin(data)).then((res) => {
+          if (res.payload.statusLogin) {
+            Swal.fire({
+              position: "middle-center",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            }).then((res) => navigate("/home"))
+          } else if (res.payload.response.data.message) {
+            Swal.fire({
+              position: "middle-center",
+              icon: "error",
+              title: "Email / Password salah",
+              showConfirmButton: false,
+              timer: 1500,
+            })
+          }
+        })
+      : Swal.fire({
           position: "middle-center",
           icon: "error",
-          title: "Email / Password salah",
+          title: "email tidak valid",
           showConfirmButton: false,
           timer: 1500,
         })
-      }
-    })
   }
 
   return (
@@ -61,7 +69,7 @@ const Login = () => {
             <div className="email mb-3">
               <label className="form-label">Email address</label>
               <input
-                type={"email"}
+                type="email"
                 className="form-control email-input"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -69,7 +77,7 @@ const Login = () => {
             <div className="password mb-3">
               <label className="form-label">password</label>
               <input
-                type={"password"}
+                type="password"
                 className="form-control password-input"
                 onChange={(e) => setPassword(e.target.value)}
               />

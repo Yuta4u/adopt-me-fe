@@ -7,7 +7,6 @@ import { useSelector } from "react-redux"
 
 const Pet = () => {
   const [dataAnimal, setDataAnimal] = useState([])
-
   const getAnimalByUserId = () => {
     axios
       .get("http://localhost:8000/animal/v1/animalByUser/10")
@@ -16,7 +15,7 @@ const Pet = () => {
 
   useEffect(() => {
     getAnimalByUserId()
-  }, [])
+  }, [dataAnimal])
 
   return (
     <div className="pet-container-fluid position-relative">
