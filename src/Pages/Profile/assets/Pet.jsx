@@ -7,8 +7,6 @@ import { useSelector } from "react-redux"
 
 const Pet = () => {
   const [dataAnimal, setDataAnimal] = useState([])
-  const user = useSelector((state) => state)
-  console.log(user)
 
   const getAnimalByUserId = () => {
     axios
@@ -33,8 +31,8 @@ const Pet = () => {
                     src={`http://localhost:8000/${e.images.replace(`\\`, "/")}`}
                     className="pet-card-img"
                   />
-                  <div class="deroul_titre">PURE CSS :HOVER</div>
-                  <div class="deroul_soustitre">www.wifeo.com/code</div>
+                  <div class="deroul_titre">{e.name}</div>
+                  <div class="deroul_soustitre">{e.jenis}</div>
                 </div>
               </div>
             ))}

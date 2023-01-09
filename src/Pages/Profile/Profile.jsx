@@ -38,6 +38,7 @@ const Profile = () => {
           <div className="col-3 div-profile">
             <div className="profile-img">
               <img src={defaultProfileImg} className="profile-image" />
+              <div className="saldo">5000</div>
             </div>
 
             <div className="profile-nav">
@@ -57,6 +58,7 @@ const Profile = () => {
           </div>
           <div className="col profile-content">
             <Pet props={animal} />
+            {/* <Adopt /> */}
             {/* <Adopt /> */}
           </div>
         </div>

@@ -45,8 +45,17 @@
 }
 
 .cat {
-  font-size: 40px;
+  font-size: 50px;
   margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.hr-cat {
+  width: 90%;
+  align-self: center;
+  margin-left: auto;
 }
 
 .card-image,

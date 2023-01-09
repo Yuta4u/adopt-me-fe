@@ -94,7 +94,11 @@ const Home = () => {
         {/* ========== CARD CONTENT ========== */}
 
         <div className="slide-container">
-          <div className="cat">Cat</div>
+          <div className="cat">
+            Cat
+            <hr className="hr-cat" />
+          </div>
+
           <Swiper
             slidesPerView={5}
             spaceBetween={30}

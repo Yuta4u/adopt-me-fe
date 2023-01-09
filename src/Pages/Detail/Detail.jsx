@@ -76,9 +76,6 @@ const Detail = (props) => {
               sisanya dan bertransaksi.
             </div>
             <button className="button-detail adopt-now">ADOPT SEKARANG</button>
-            <button className="button-detail back" onClick={() => nav("/home")}>
-              BACK TO HOME
-            </button>
           </div>
         </div>
       </div>
