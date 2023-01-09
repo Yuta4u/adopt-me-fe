@@ -17,6 +17,23 @@ const Detail = (props) => {
   const dispatch = useDispatch()
   const nav = useNavigate()
 
+  const handleAdoptNow = (x) => {
+    return swal({
+      title: "Adopsi?",
+      text: `booking ADOPT sekarang? dp adopsi sebesar Rp ${x.price}`,
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        })
+      } else {
+        swal("Your imaginary file is safe!")
+      }
+    })
+  }
+
   useEffect(() => {
     dispatch(fetchAllAnimalById(idanimal)).then((res) => {
       setData(res.payload.data[0])
@@ -75,7 +92,12 @@ const Detail = (props) => {
               ada calon adopter. Lalu owner akan memberi lokasi untuk melunaskan
               sisanya dan bertransaksi.
             </div>
-            <button className="button-detail adopt-now">ADOPT SEKARANG</button>
+            <button
+              className="button-detail adopt-now"
+              onClick={() => handleAdoptNow()}
+            >
+              ADOPT SEKARANG
+            </button>
           </div>
         </div>
       </div>

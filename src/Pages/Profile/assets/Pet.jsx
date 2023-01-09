@@ -1,27 +1,6 @@
-import axios from "axios";
-import img from "./img/kucing.jpg";
+import axios from "axios"
+import img from "./img/kucing.jpg"
 
-<<<<<<< HEAD
-import Form from "./Form";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
-const Pet = () => {
-  const [dataAnimal, setDataAnimal] = useState([]);
-  const getAnimalByUserId = () => {
-    axios
-      .get("http://localhost:8000/animal/v1/animalByUser/", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((res) => setDataAnimal(res.data.data));
-  };
-
-  useEffect(() => {
-    getAnimalByUserId();
-  }, []);
-=======
 import Form from "./Form"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -35,7 +14,6 @@ const Pet = () => {
   useEffect(() => {
     dispatch(fetchAnimalByUser()).then((res) => setDataAnimal(res.payload.data))
   }, [animal])
->>>>>>> 823cc9a7a878f371bdacbee9ab2f17466b9f0d1d
 
   return (
     <div className="pet-container-fluid position-relative">
@@ -59,7 +37,7 @@ const Pet = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Pet;
+export default Pet
