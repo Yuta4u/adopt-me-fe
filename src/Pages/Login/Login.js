@@ -35,8 +35,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         }).then((res) => navigate("/home"))
-      }
-      if (res.payload.response.data.message) {
+      } else if (res.payload.response.data.message) {
         Swal.fire({
           position: "middle-center",
           icon: "error",
