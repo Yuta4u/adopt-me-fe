@@ -28,6 +28,23 @@ export const fetchAllAnimalById = createAsyncThunk(
   }
 )
 
+export const fetchAnimalByUser = createAsyncThunk(
+  "Animal/fetchAnimalByUser",
+  async () => {
+    try {
+      const response = await api.get(`/animal/v1/animalByUser`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      return response.data
+    } catch (err) {
+      console.log(err)
+      return err
+    }
+  }
+)
+
 export const fetchPostAnimal = createAsyncThunk(
   "Animal/postAnimal",
   async (data) => {
@@ -51,6 +68,7 @@ const initialState = {
   AnimalId: [],
   isLoading: [],
   AnimalPost: [],
+  AnimalByUser: [],
 }
 const animalSlice = createSlice({
   name: "Animal",
@@ -75,6 +93,16 @@ const animalSlice = createSlice({
       return { ...state, loading: false, AnimalId: action.payload }
     },
     [fetchAllAnimalById.rejected]: (state, action) => {
+      return { ...state, loading: false, error: action.error }
+    },
+    // =================== GET Animal by USER ============================
+    [fetchAnimalByUser.pending]: (state, action) => {
+      return { ...state, loading: true, error: null }
+    },
+    [fetchAnimalByUser.fulfilled]: (state, action) => {
+      return { ...state, loading: false, AnimalByUser: action.payload }
+    },
+    [fetchAnimalByUser.rejected]: (state, action) => {
       return { ...state, loading: false, error: action.error }
     },
     // =================== POST Animal ============================

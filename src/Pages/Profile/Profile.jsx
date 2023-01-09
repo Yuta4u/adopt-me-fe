@@ -7,7 +7,6 @@ import Logos from "./assets/img/logos.png";
 // content-profile
 import Pet from "./assets/Pet";
 import Adopt from "./assets/Adopt";
-// import History from "./assets/";
 
 // others
 import { useEffect, useState } from "react";
@@ -62,15 +61,9 @@ const Profile = () => {
             </div>
           </div>
           <div className="col profile-content">
-            {content === "pet" ? (
-              <Pet props={animal} />
-            ) : content === "adopt" ? (
-              <Adopt props={animal} />
-            ) : (
-              // ) : content === "history" ? (
-              //   <History />
-              <Pet props={animal} />
-            )}
+            <Pet props={animal} />
+            {/* <Adopt /> */}
+            {/* <Adopt /> */}
           </div>
         </div>
       </div>

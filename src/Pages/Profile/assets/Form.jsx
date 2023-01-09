@@ -20,7 +20,7 @@ const Form = () => {
   }
 
   const handlePostAnimal = () => {
-    dispatch(fetchPostAnimal(data)).then((res) => console.log(res))
+    dispatch(fetchPostAnimal(data)).then((res) => res)
   }
 
   return (
