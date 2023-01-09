@@ -3,19 +3,17 @@ import img from "./img/kucing.jpg"
 
 import Form from "./Form"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchAllAnimalById, fetchAnimalByUser } from "../../../Redux/animal"
 
 const Pet = () => {
   const [dataAnimal, setDataAnimal] = useState([])
-  const getAnimalByUserId = () => {
-    axios
-      .get("http://localhost:8000/animal/v1/animalByUser/10")
-      .then((res) => setDataAnimal(res.data.data))
-  }
+  const animal = useSelector((state) => state.animal.AnimalPost)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getAnimalByUserId()
-  }, [dataAnimal])
+    dispatch(fetchAnimalByUser()).then((res) => setDataAnimal(res.payload.data))
+  }, [animal])
 
   return (
     <div className="pet-container-fluid position-relative">
