@@ -61,7 +61,15 @@ const Profile = () => {
             </div>
           </div>
           <div className="col profile-content">
-            <Pet props={animal} />
+            {content === "pet" ? (
+              <Pet props={animal} />
+            ) : content === "adopt" ? (
+              <Adopt props={animal} />
+            ) : (
+              // ) : content === "history" ? (
+              //   <History />
+              <Pet props={animal} />
+            )}
             {/* <Adopt /> */}
             {/* <Adopt /> */}
           </div>
