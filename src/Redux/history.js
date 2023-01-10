@@ -35,9 +35,40 @@ export const fetchHistoryByUser = createAsyncThunk(
   }
 )
 
+export const fetchHistoryById = createAsyncThunk(
+  "History/fetchHistoryById",
+  async (data) => {
+    try {
+      const response = await api.get(`/history/v1/history/${data}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      return response.data
+    } catch (err) {
+      console.log(err)
+      return err
+    }
+  }
+)
+
+export const fetchUpdateHistory = createAsyncThunk(
+  "History/fetchUpdateHistory",
+  async (data) => {
+    try {
+      const response = await api.put(`/history/v1/historyUpdate`, data)
+      return response.data
+    } catch (err) {
+      console.log(err)
+      return err
+    }
+  }
+)
+
 const initialState = {
   historyByUser: [],
   postHistory: [],
+  adopt: [],
 }
 
 const historySlice = createSlice({
@@ -53,6 +84,16 @@ const historySlice = createSlice({
       return { ...state, loading: false, historyByUser: action.payload }
     },
     [fetchHistoryByUser.rejected]: (state, action) => {
+      return { ...state, loading: false, error: action.error }
+    },
+    // =================== HISTORY BY ID ============================
+    [fetchHistoryById.pending]: (state, action) => {
+      return { ...state, loading: true, error: null }
+    },
+    [fetchHistoryById.fulfilled]: (state, action) => {
+      return { ...state, loading: false, adopt: action.payload }
+    },
+    [fetchHistoryById.rejected]: (state, action) => {
       return { ...state, loading: false, error: action.error }
     },
     // =================== POST HISTORY BY USER ============================

@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import api from "./database/config"
 
-// export const register = async () => {
-//   try {
-//     const post = await axios.post(api + "/user/v1/register");
+export const register = async () => {
+  try {
+    const post = await axios.post(api + "/user/v1/register")
 
-//     if (post) {
-//       console.log("BERHASIL REGISTER");
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    if (post) {
+      console.log("BERHASIL REGISTER")
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 export const fetchLogin = createAsyncThunk("users/loginUsers", async (data) => {
   try {
@@ -43,6 +43,18 @@ export const fetchUserId = createAsyncThunk(
   }
 )
 
+export const fetchUserById = createAsyncThunk(
+  "users/userById",
+  async (data) => {
+    try {
+      const res = await api.get(`/user/v1/userById/${data.id}`)
+      return res.data
+    } catch (err) {
+      return err
+    }
+  }
+)
+
 export const fetchPutUser = createAsyncThunk("users/putUsers", async (data) => {
   try {
     const res = await api.put("/user/v1/updateUser", data, {
@@ -55,9 +67,23 @@ export const fetchPutUser = createAsyncThunk("users/putUsers", async (data) => {
   }
 })
 
+export const fetchPutUserById = createAsyncThunk(
+  "users/putUsersById",
+  async ({ idUser, saldo }) => {
+    console.log(idUser, saldo)
+    try {
+      const res = await api.put(`/user/v1/updateUserById/${idUser}`, { saldo })
+      return res.data
+    } catch (err) {
+      return err
+    }
+  }
+)
+
 const initialState = {
   register: [],
   user: [],
+  userSeller: [],
   saldo: [],
 }
 
@@ -94,6 +120,16 @@ const usersSlice = createSlice({
       return { ...state, loading: false, saldo: action.payload }
     },
     [fetchPutUser.rejected]: (state, action) => {
+      return { ...state, loading: false, error: action.error }
+    },
+    // =================== GET user by id ============================
+    [fetchUserById.pending]: (state, action) => {
+      return { ...state, loading: true, error: null }
+    },
+    [fetchUserById.fulfilled]: (state, action) => {
+      return { ...state, loading: false, userSeller: action.payload }
+    },
+    [fetchUserById.rejected]: (state, action) => {
       return { ...state, loading: false, error: action.error }
     },
   },

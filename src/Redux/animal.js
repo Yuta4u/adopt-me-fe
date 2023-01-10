@@ -18,7 +18,6 @@ export const fetchAllAnimalById = createAsyncThunk(
   "Animal/fetchAllAnimalById",
   async (idAnimal) => {
     try {
-      console.log(idAnimal)
       const response = await api.get(`/animal/v1/animalById/${idAnimal}`)
       return response.data
     } catch (err) {

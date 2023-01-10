@@ -1,4 +1,32 @@
+import { useDispatch, useSelector } from "react-redux"
+import { fetchUpdateHistory } from "../../../Redux/history"
+import { fetchPutUserById, fetchUserById } from "../../../Redux/user"
+
+import { useEffect } from "react"
+
 const ModalAdopt = () => {
+  const dataAdopt = useSelector((state) => state.history.adopt)
+  const dataSeller = useSelector((state) => state.users.userSeller.data)
+
+  const dispatch = useDispatch()
+
+  const handleAdopt = () => {
+    return dispatch(
+      fetchUpdateHistory({
+        id: dataAdopt.data[0].id,
+        status: "yes",
+      }),
+      dispatch(
+        fetchPutUserById({
+          idUser: dataSeller.id,
+          saldo: Number(dataSeller.saldo) + Number(dataAdopt.data[0].dp),
+        })
+      )
+    )
+  }
+
+  useEffect(() => {}, [])
+
   return (
     <>
       <div
@@ -64,8 +92,9 @@ const ModalAdopt = () => {
                 data-bs-target="#exampleModalToggle"
                 data-bs-toggle="modal"
                 data-bs-dismiss="modal"
+                onClick={() => handleAdopt()}
               >
-                Bayar
+                Konfirmasi
               </button>
             </div>
           </div>
