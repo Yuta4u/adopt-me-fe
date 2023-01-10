@@ -1,32 +1,32 @@
 // STYLING
-import "./assets/detail.css"
-import Swal from "sweetalert2"
+import "./assets/detail.css";
+import Swal from "sweetalert2";
 
 // react
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { fetchAllAnimalById } from "../../Redux/animal"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllAnimalById } from "../../Redux/animal";
+import { useNavigate } from "react-router-dom";
 
 // assets
-import Headers from "../../Components/Headers"
-import { fetchPostHistory } from "../../Redux/history"
-import { fetchPutUser, fetchUserId } from "../../Redux/user"
+import Headers from "../../Components/Headers";
+import { fetchPostHistory } from "../../Redux/history";
+import { fetchPutUser, fetchUserId } from "../../Redux/user";
 
 const Detail = () => {
-  const [data, setData] = useState([])
-  const idanimal = new URLSearchParams(window.location.search).get("id")
-  const user = useSelector((state) => state.users.user.data)
-  const dispatch = useDispatch()
+  const [data, setData] = useState([]);
+  const idanimal = new URLSearchParams(window.location.search).get("id");
+  const user = useSelector((state) => state.users.user.data);
+  const dispatch = useDispatch();
 
-  console.log()
+  console.log();
 
   const dataPostHistory = {
     idAnimal: data.id,
     dp: Number(data.harga / 2),
     alamat: "",
     status: "no",
-  }
+  };
 
   const handleAdoptNow = async (x) => {
     const { value: accept } = await Swal.fire({
@@ -36,29 +36,29 @@ const Detail = () => {
       // inputPlaceholder: `DP 50% (Rp ${convertRupiah(x / 2)})`,
       confirmButtonText: "Adopt sekarang",
       inputValidator: (result) => {
-        return !result && "You need to agree with T&C"
+        return !result && "You need to agree with T&C";
       },
-    })
+    });
 
     if (accept) {
       if (Number(user.saldo) >= Number(data.harga / 2)) {
-        dispatch(fetchPostHistory(dataPostHistory)),
-          dispatch(
-            fetchPutUser({ saldo: Number(user.saldo) - Number(data.harga / 2) })
-          ),
-          dispatch(fetchUserId())
-        Swal.fire("Terima kasih, tunggu konfirmasi dari Open Adopt:)")
+        dispatch(fetchPostHistory(dataPostHistory));
+        dispatch(
+          fetchPutUser({ saldo: Number(user.saldo) - Number(data.harga / 2) })
+        );
+        dispatch(fetchUserId());
+        Swal.fire("Terima kasih, tunggu konfirmasi dari Open Adopt:)");
       } else {
-        Swal.fire("Maaf, saldo anda tidak cukup!")
+        Swal.fire("Maaf, saldo anda tidak cukup!");
       }
     }
-  }
+  };
 
   useEffect(() => {
     dispatch(fetchAllAnimalById(idanimal)).then((res) => {
-      setData(res.payload.data[0])
-    })
-  }, [idanimal])
+      setData(res.payload.data[0]);
+    });
+  }, [idanimal]);
 
   // CONVERT RUPIAH
   const convertRupiah = (num) => {
@@ -71,8 +71,8 @@ const Detail = () => {
       .join(".")
       .split("")
       .reverse()
-      .join("")
-  }
+      .join("");
+  };
   return (
     <>
       <Headers />
@@ -122,7 +122,7 @@ const Detail = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;
