@@ -1,3 +1,0 @@
-Notiflix.Report.init({
-  
-})

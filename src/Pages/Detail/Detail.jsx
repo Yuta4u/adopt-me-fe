@@ -1,37 +1,57 @@
 // STYLING
-import axios from "axios"
 import "./assets/detail.css"
+import Swal from "sweetalert2"
 
 // react
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchAllAnimalById } from "../../Redux/animal"
 import { useNavigate } from "react-router-dom"
 
 // assets
 import Headers from "../../Components/Headers"
+import { fetchPostHistory } from "../../Redux/history"
+import { fetchPutUser, fetchUserId } from "../../Redux/user"
 
-const Detail = (props) => {
+const Detail = () => {
   const [data, setData] = useState([])
   const idanimal = new URLSearchParams(window.location.search).get("id")
+  const user = useSelector((state) => state.users.user.data)
   const dispatch = useDispatch()
-  const nav = useNavigate()
 
-  const handleAdoptNow = (x) => {
-    return swal({
-      title: "Adopsi?",
-      text: `booking ADOPT sekarang? dp adopsi sebesar Rp ${x.price}`,
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        })
-      } else {
-        swal("Your imaginary file is safe!")
-      }
+  console.log()
+
+  const dataPostHistory = {
+    idAnimal: data.id,
+    dp: Number(data.harga / 2),
+    alamat: "",
+    status: "no",
+  }
+
+  const handleAdoptNow = async (x) => {
+    const { value: accept } = await Swal.fire({
+      title: `DP 50% (Rp ${convertRupiah(x / 2)})`,
+      // input: "checkbox",
+      // inputValue: 1,
+      // inputPlaceholder: `DP 50% (Rp ${convertRupiah(x / 2)})`,
+      confirmButtonText: "Adopt sekarang",
+      inputValidator: (result) => {
+        return !result && "You need to agree with T&C"
+      },
     })
+
+    if (accept) {
+      if (Number(user.saldo) >= Number(data.harga / 2)) {
+        dispatch(fetchPostHistory(dataPostHistory)),
+          dispatch(
+            fetchPutUser({ saldo: Number(user.saldo) - Number(data.harga / 2) })
+          ),
+          dispatch(fetchUserId())
+        Swal.fire("Terima kasih, tunggu konfirmasi dari Open Adopt:)")
+      } else {
+        Swal.fire("Maaf, saldo anda tidak cukup!")
+      }
+    }
   }
 
   useEffect(() => {
@@ -94,9 +114,9 @@ const Detail = (props) => {
             </div>
             <button
               className="button-detail adopt-now"
-              onClick={() => handleAdoptNow()}
+              onClick={() => handleAdoptNow(data.harga)}
             >
-              ADOPT SEKARANG
+              REQUEST ADOPT
             </button>
           </div>
         </div>

@@ -136,25 +136,6 @@ const Home = () => {
                 </SwiperSlide>
               </Swiper>
             ))}
-            {/* {animal.map((animal, i) => (
-              <Swiper>
-                <>
-                <SwiperSlide className="card" key={i}>
-                 
-                  <img
-                    src={`http://localhost:8000/${animal.images.replace(
-                      `\\`,
-                      "/"
-                    )}`}
-                    alt=""
-                    className="card-image"
-                    // {...(setIdAnimal = animal.id)}
-                    // onClick={navigate("/home/detail")}
-                    onClick={(e) => navigate(`/home/detail/?id=${animal.id}`)}
-                  />
-                </SwiperSlide>
-              </>
-            ))} */}
           </Swiper>
         </div>
         <div className="dog">LEL</div>

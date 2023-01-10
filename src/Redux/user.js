@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "./database/config";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import api from "./database/config"
 
 // export const register = async () => {
 //   try {
@@ -15,17 +15,17 @@ import api from "./database/config";
 
 export const fetchLogin = createAsyncThunk("users/loginUsers", async (data) => {
   try {
-    const res = await api.post("/user/v1/login", data);
+    const res = await api.post("/user/v1/login", data)
     if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
-      return res.data;
+      localStorage.setItem("token", res.data.token)
+      return res.data
     } else {
-      throw new Error(res.data.message);
+      throw new Error(res.data.message)
     }
   } catch (err) {
-    return err;
+    return err
   }
-});
+})
 
 export const fetchUserId = createAsyncThunk(
   "users/loginUsers",
@@ -35,18 +35,31 @@ export const fetchUserId = createAsyncThunk(
         headers: {
           Authorization: localStorage.getItem("token"),
         },
-      });
-      return res.data;
+      })
+      return res.data
     } catch (err) {
-      return err;
+      return err
     }
   }
-);
+)
+
+export const fetchPutUser = createAsyncThunk("users/putUsers", async (data) => {
+  try {
+    const res = await api.put("/user/v1/updateUser", data, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+  } catch (err) {
+    return err
+  }
+})
 
 const initialState = {
   register: [],
   user: [],
-};
+  saldo: [],
+}
 
 const usersSlice = createSlice({
   name: "users",
@@ -55,26 +68,36 @@ const usersSlice = createSlice({
   extraReducers: {
     // =================== GET users ============================
     [fetchLogin.pending]: (state, action) => {
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: true, error: null }
     },
     [fetchLogin.fulfilled]: (state, action) => {
-      return { ...state, loading: false, login: action.payload };
+      return { ...state, loading: false, login: action.payload }
     },
     [fetchLogin.rejected]: (state, action) => {
-      return { ...state, loading: false, error: action.error };
+      return { ...state, loading: false, error: action.error }
     },
     // =================== GET users Id============================
     [fetchUserId.pending]: (state, action) => {
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: true, error: null }
     },
     [fetchUserId.fulfilled]: (state, action) => {
-      return { ...state, loading: false, user: action.payload };
+      return { ...state, loading: false, user: action.payload }
     },
     [fetchUserId.rejected]: (state, action) => {
-      return { ...state, loading: false, error: action.error };
+      return { ...state, loading: false, error: action.error }
+    },
+    // =================== PUT users Id============================
+    [fetchPutUser.pending]: (state, action) => {
+      return { ...state, loading: true, error: null }
+    },
+    [fetchPutUser.fulfilled]: (state, action) => {
+      return { ...state, loading: false, saldo: action.payload }
+    },
+    [fetchPutUser.rejected]: (state, action) => {
+      return { ...state, loading: false, error: action.error }
     },
   },
-});
+})
 
-export const { setAuthenticated, setError } = usersSlice.actions;
-export default usersSlice.reducer;
+export const { setAuthenticated, setError } = usersSlice.actions
+export default usersSlice.reducer

@@ -1,36 +1,38 @@
 //styling
-import "./assets/profile.css";
-import defaultProfileImg from "./assets/img/avatar.png";
-import Logo from "./assets/img/adopt-me-logo.png";
-import Logos from "./assets/img/logos.png";
+import "./assets/profile.css"
+import defaultProfileImg from "./assets/img/avatar.png"
+import Logo from "./assets/img/adopt-me-logo.png"
+import Logos from "./assets/img/logos.png"
 
 // content-profile
-import Pet from "./assets/Pet";
-import Adopt from "./assets/Adopt";
+import Pet from "./assets/Pet"
+import Adopt from "./assets/Adopt"
 
 // others
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllAnimal } from "../../Redux/animal";
-import { useNavigate } from "react-router-dom";
-import Headers from "../../Components/Headers";
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchAllAnimal } from "../../Redux/animal"
+import { useNavigate } from "react-router-dom"
+import Headers from "../../Components/Headers"
+import Topup from "./assets/Topup"
 
 const Profile = () => {
-  const [animal, setAnimal] = useState([]);
-  const [content, setContent] = useState("");
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state);
-  const nav = useNavigate();
+  const [animal, setAnimal] = useState([])
+  const [content, setContent] = useState("")
+  const dispatch = useDispatch()
+  const stateUser = useSelector((state) => state.users.user.data)
+  const nav = useNavigate()
 
   const handleLogout = () => {
-    return localStorage.clear(), nav("/login"), alert("berhasil logout yey");
-  };
+    return localStorage.clear(), nav("/login"), alert("berhasil logout yey")
+  }
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [])
 
   return (
     <>
+      <Topup />
       <div className="navbarkecil">
         <Headers />
       </div>
@@ -39,7 +41,17 @@ const Profile = () => {
           <div className="col-3 div-profile">
             <div className="profile-img">
               <img src={defaultProfileImg} className="profile-image" />
-              <div className="saldo">5000</div>
+              <div className="nama-user">{stateUser.email}</div>
+              <div className="saldo">
+                Rp {stateUser.saldo}{" "}
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  topup
+                </button>
+              </div>
             </div>
 
             <div className="profile-nav">
@@ -61,14 +73,18 @@ const Profile = () => {
             </div>
           </div>
           <div className="col profile-content">
-            <Pet props={animal} />
-            {/* <Adopt /> */}
-            {/* <Adopt /> */}
+            {content === "pet" ? (
+              <Pet props={animal} />
+            ) : content === "adopt" ? (
+              <Adopt props={animal} />
+            ) : (
+              <Pet props={animal} />
+            )}
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile
