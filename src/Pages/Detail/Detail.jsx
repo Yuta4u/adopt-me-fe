@@ -6,7 +6,6 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAllAnimalById } from "../../Redux/animal"
-import { useNavigate } from "react-router-dom"
 
 // assets
 import Headers from "../../Components/Headers"

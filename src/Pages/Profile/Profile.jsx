@@ -16,6 +16,7 @@ import { fetchAllAnimal } from "../../Redux/animal"
 import { useNavigate } from "react-router-dom"
 import Headers from "../../Components/Headers"
 import Topup from "./assets/Topup"
+import { fetchUserId } from "../../Redux/user"
 
 const Profile = () => {
   const [animal, setAnimal] = useState([])
