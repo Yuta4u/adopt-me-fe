@@ -16,7 +16,6 @@ import { fetchAllAnimal } from "../../Redux/animal"
 import { useNavigate } from "react-router-dom"
 import Headers from "../../Components/Headers"
 import Topup from "./assets/Topup"
-import { fetchUserId } from "../../Redux/user"
 
 const Profile = () => {
   const [animal, setAnimal] = useState([])
@@ -42,9 +41,9 @@ const Profile = () => {
           <div className="col-3 div-profile">
             <div className="profile-img">
               <img src={defaultProfileImg} className="profile-image" />
-              <div className="nama-user">{stateUser.email}</div>
+              <div className="nama-user">{stateUser?.email}</div>
               <div className="saldo">
-                Rp {stateUser.saldo}{" "}
+                Rp {stateUser?.saldo}{" "}
                 <button
                   type="button"
                   data-bs-toggle="modal"
@@ -62,12 +61,7 @@ const Profile = () => {
               <div className="adopt-nav" onClick={(e) => setContent("adopt")}>
                 Adopt
               </div>
-              <div
-                className="history-nav"
-                onClick={(e) => setContent("history")}
-              >
-                History
-              </div>
+
               <div className="logout-nav" onClick={() => handleLogout()}>
                 Logout
               </div>

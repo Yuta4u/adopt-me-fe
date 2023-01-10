@@ -6,6 +6,7 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAllAnimalById } from "../../Redux/animal"
+import { useNavigate } from "react-router-dom"
 
 // assets
 import Headers from "../../Components/Headers"
@@ -41,11 +42,11 @@ const Detail = () => {
 
     if (accept) {
       if (Number(user.saldo) >= Number(data.harga / 2)) {
-        dispatch(fetchPostHistory(dataPostHistory)),
-          dispatch(
-            fetchPutUser({ saldo: Number(user.saldo) - Number(data.harga / 2) })
-          ),
-          dispatch(fetchUserId())
+        dispatch(fetchPostHistory(dataPostHistory))
+        dispatch(
+          fetchPutUser({ saldo: Number(user.saldo) - Number(data.harga / 2) })
+        )
+        dispatch(fetchUserId())
         Swal.fire("Terima kasih, tunggu konfirmasi dari Open Adopt:)")
       } else {
         Swal.fire("Maaf, saldo anda tidak cukup!")
