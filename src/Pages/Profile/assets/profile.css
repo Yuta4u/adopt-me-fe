@@ -18,6 +18,28 @@
   border: 2px solid #757575;
 }
 
+.btn-pagination {
+  position: absolute;
+  /* margin-top: 10px; */
+  bottom: 50px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  color: #757575;
+}
+.btn-pagination ul {
+  list-style: none;
+  width: 100%;
+}
+
+.btn-pagination ul li a {
+  color: white;
+  text-decoration: none;
+}
+.btn-pagination ul .selected {
+  color: white;
+  text-decoration: none;
+}
 .div-profile {
   background-color: antiquewhite;
   display: flex;
